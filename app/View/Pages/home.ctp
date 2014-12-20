@@ -12,6 +12,19 @@ endif;
 App::uses('Debugger', 'Utility');
 ?>
 <h2><?php echo __d('cake_dev', 'Release Notes for CakePHP %s.', Configure::version()); ?></h2>
+
+<!-- 
+*
+*  Alternative Shortcut use this when links aren´t set in the default.ctp
+*
+-->
+<!--<h2><?php echo "Hier geht es " . $this->Html->link(
+		__d('cake_dev', 'zu den Posts'),
+		'http://mycakeblog.com/posts/',
+		array('target' => '_self', 'escape' => false)
+	);
+    ?>
+</h2>-->
 <p>
 	<?php echo $this->Html->link(__d('cake_dev', 'Read the changelog'), 'http://cakephp.org/changelogs/' . Configure::version()); ?>
 </p>
@@ -20,6 +33,7 @@ if (Configure::read('debug') > 0):
 	Debugger::checkSecurityKeys();
 endif;
 ?>
+
 <?php if (file_exists(WWW_ROOT . 'css' . DS . 'cake.generic.css')): ?>
 	<p id="url-rewriting-warning" style="background-color:#e32; color:#fff;">
 		<?php echo __d('cake_dev', 'URL rewriting is not properly configured on your server.'); ?>
@@ -27,6 +41,7 @@ endif;
 		2) <a target="_blank" href="http://book.cakephp.org/2.0/en/development/configuration.html#cakephp-core-configuration" style="color:#fff;">I don't / can't use URL rewriting</a>
 	</p>
 <?php endif; ?>
+        
 <p>
 <?php
 if (version_compare(PHP_VERSION, '5.2.8', '>=')):
