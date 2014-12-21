@@ -15,6 +15,7 @@
  */
 $myOwnProject = __d('cake_dev', 'CakePHP: go to the Posts');
 $myOwnDescription = __d('cake_dev', 'CakePHP: back to the Root');
+$addOne = __d('cake_dev', 'CakePHP: Eintrag hinzufügen');
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
@@ -40,8 +41,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?> 
-                        || <?php echo $this->Html->link($myOwnDescription, 'http://mycakeblog.com'); ?> 
-                        || <?php echo $this->Html->link($myOwnProject, 'http://mycakeblog.com/posts/'); ?> </h1>
+                        || <?php echo $this->Html->link($myOwnDescription, '/'); ?> 
+                        || <?php echo $this->Html->link($myOwnProject, '/posts/'); ?> 
+                        || <?php echo $this->Html->link($addOne, '/posts/add/'); ?> 
+                        </h1>
                         
 		</div>
 		<div id="content">
