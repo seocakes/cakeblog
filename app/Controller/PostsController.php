@@ -31,9 +31,34 @@ class PostsController extends AppController {
         }
         
     }
-    //  public function edit(){
-    //      if(!$this->request->data){
-    //          $this->request->data = $post;                    
-    //      }
-    //  }
+    public function edit($id = NULL){
+        if(!$id){
+            throw new NotFoundException(__('Ungültiger Post'));
+        }
+        $post = $this->Post->findById($id);
+        if(!$post){
+            throw new NotFoundException(__('Ungültiger Post'));
+        }
+        if($this->request->is(array('post', 'put'))){
+            $this->Post->id = $id;
+            if($this->Post->save($this->request->data)) {
+                $this->Session->setFlash(__('Die Änderungen wurden erfolgreich im Eintrag mit der ID: %s gespeichert.', h($id)));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Die Änderungen konnten leider nicht gespeichert werden.'));
+        }
+        if(!$this->request->data) {
+            $this->request->data = $post;                    
+        }
+    }
+    
+    public function delete($id){
+        if($this->request->is('get')){
+            throw new MethodNotAllowedException();
+        }
+        if($this->Post->delete($id)){
+            $this->Session->setFlash(__('Der Eintrag mit der ID: %s wurde gelöscht', h($id)));
+        }
+        return $this->redirect(array('action' => 'index'));
+    }
 }

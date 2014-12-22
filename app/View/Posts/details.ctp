@@ -13,13 +13,21 @@ if (!$switch) {
     <p>
     <?php echo h($post['Post']['body']); ?>
     </p>
-    <?php
+    <?php echo '<p>'. $this->Html->link('Edit',
+                array('action' => 'edit', $post['Post']['id'])).'</p>';
+    
+    echo '<p>'.$this->Form->postLink('Löschen',
+                array('action' => 'delete', $post['Post']['id'])).'</p>';
 } else {
     echo "<table>";
-    $names = array('PostId', 'Title', 'Body', 'Created', 'Modified');
+    $names = array('PostId', 'Title', 'Body', 'Created', 'Modified', 'Action');
     echo $this->Html->tableHeaders($names);
 
     foreach ($post as $details) {
+        $details['edit'] = $this->Html->link('Bearbeiten',
+                array('action'=>'edit', $post['Post']['id']));
+         $details['delete'] = $this->Form->postLink('Löschen',
+                array('action'=>'delete', $post['Post']['id']));
         echo $this->Html->tableCells($details);
     }
     echo "</table>";
